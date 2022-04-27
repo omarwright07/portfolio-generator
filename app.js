@@ -1,12 +1,10 @@
+const generatePage = require('./src/page-template.js');
+const fs = require('fs');
 const profileDataArgs = process.argv.slice(2);
-// const printProfileData = (profileDataArr) => {
-//     for (let i = 0; i < profileDataArr.length; i++) {
-//         console.log(profileDataArr[i]);
-//     }
-// };
+const [name, github] = profileDataArgs;
 
-const printProfileData = profileDataArr => {
-    profileDataArr.forEach(profileItem => console.log(profileItem));
-};
+fs.writeFile('./index.html', generatePage(name, github), err => {
+    if (err) throw new Error(err);
 
-printProfileData(profileDataArgs);
+    console.log('Portfilo complete! Check out index.html to see the output?');
+});
